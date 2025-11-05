@@ -164,6 +164,78 @@ body[data-theme="light"] .header {
     border-bottom: 1px solid var(--border-light);
 }
 
+/* Beta Banner */
+.beta-banner {
+    position: fixed;
+    top: 73px;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+    color: white;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.beta-banner-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.beta-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.625rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+}
+
+.beta-icon {
+    width: 1rem;
+    height: 1rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.beta-text {
+    font-weight: 500;
+}
+
+.beta-text strong {
+    font-weight: 700;
+}
+
 .nav {
     display: flex;
     justify-content: space-between;
@@ -266,7 +338,7 @@ body[data-theme="light"] .moon-icon {
 
 /* Hero Section */
 .hero {
-    padding: 8rem 0 4rem;
+    padding: 9rem 0 4rem;
     background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
 }
 
@@ -1494,5 +1566,19 @@ body[data-theme="light"] .faq-item {
 
     .typing-indicator {
         margin-left: 0;
+    }
+
+    .beta-banner {
+        font-size: 0.75rem;
+        padding: 0.375rem 0.75rem;
+    }
+
+    .beta-banner-content {
+        flex-direction: column;
+        gap: 0.375rem;
+    }
+
+    .beta-text {
+        font-size: 0.75rem;
     }
 }
