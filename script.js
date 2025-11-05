@@ -31,10 +31,10 @@ if (themeToggle) {
     themeToggle.addEventListener('click', () => {
         const currentTheme = document.body.getAttribute('data-theme') || 'dark';
         const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
+
         document.body.setAttribute('data-theme', newTheme);
         setCookie('alfred-theme', newTheme);
-        
+
         // Add a subtle animation
         themeToggle.style.transform = 'rotate(360deg)';
         setTimeout(() => {
@@ -70,13 +70,13 @@ let lastScroll = 0;
 
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
-    
+
     if (currentScroll > 100) {
         header.style.boxShadow = '0 4px 6px -1px rgb(0 0 0 / 0.1)';
     } else {
         header.style.boxShadow = 'none';
     }
-    
+
     lastScroll = currentScroll;
 });
 
@@ -108,10 +108,10 @@ const downloadBtn = document.getElementById('downloadBtn');
 if (downloadBtn) {
     downloadBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        
+
         // Show notification
         showNotification('Descarga iniciando...', 'info');
-        
+
         // Here you would typically trigger the actual download
         // For now, we'll just show a message
         setTimeout(() => {
@@ -127,7 +127,7 @@ function showNotification(message, type = 'info') {
     if (existingNotification) {
         existingNotification.remove();
     }
-    
+
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.innerHTML = `
@@ -140,81 +140,9 @@ function showNotification(message, type = 'info') {
             <span>${message}</span>
         </div>
     `;
-    
+
     document.body.appendChild(notification);
-    
-    // Add styles dynamically
-    const style = document.createElement('style');
-    style.textContent = `
-        .notification {
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            z-index: 9999;
-            padding: 1rem 1.5rem;
-            background: white;
-            border-radius: 0.75rem;
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            border-left: 4px solid;
-            animation: slideIn 0.3s ease-out;
-            max-width: 400px;
-        }
-        
-        .notification-info {
-            border-left-color: #3b82f6;
-            color: #1e40af;
-        }
-        
-        .notification-success {
-            border-left-color: #10b981;
-            color: #047857;
-        }
-        
-        .notification-warning {
-            border-left-color: #f59e0b;
-            color: #b45309;
-        }
-        
-        .notification-content {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-        
-        .notification-icon {
-            width: 1.5rem;
-            height: 1.5rem;
-            flex-shrink: 0;
-        }
-        
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        
-        @keyframes slideOut {
-            from {
-                transform: translateX(0);
-                opacity: 1;
-            }
-            to {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-        }
-    `;
-    
-    if (!document.querySelector('#notification-styles')) {
-        style.id = 'notification-styles';
-        document.head.appendChild(style);
-    }
-    
+
     // Auto remove after 5 seconds
     setTimeout(() => {
         notification.style.animation = 'slideOut 0.3s ease-out';
@@ -224,11 +152,11 @@ function showNotification(message, type = 'info') {
 
 // Add hover effect to cards
 document.querySelectorAll('.feature-card, .requirement-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
+    card.addEventListener('mouseenter', function () {
         this.style.borderColor = 'var(--primary-light)';
     });
-    
-    card.addEventListener('mouseleave', function() {
+
+    card.addEventListener('mouseleave', function () {
         this.style.borderColor = 'var(--border)';
     });
 });
@@ -237,7 +165,7 @@ document.querySelectorAll('.feature-card, .requirement-card').forEach(card => {
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const heroImage = document.querySelector('.hero-image');
-    
+
     if (heroImage && scrolled < 800) {
         heroImage.style.transform = `translateY(${scrolled * 0.3}px)`;
     }
@@ -255,13 +183,13 @@ if (typingIndicator) {
 document.querySelectorAll('.faq-item').forEach(item => {
     const question = item.querySelector('.faq-question');
     const answer = item.querySelector('.faq-answer');
-    
+
     if (question && answer) {
         question.style.cursor = 'pointer';
-        
+
         question.addEventListener('click', () => {
             const isOpen = item.classList.contains('open');
-            
+
             // Close all other items
             document.querySelectorAll('.faq-item').forEach(otherItem => {
                 otherItem.classList.remove('open');
@@ -270,7 +198,7 @@ document.querySelectorAll('.faq-item').forEach(item => {
                     otherAnswer.style.maxHeight = null;
                 }
             });
-            
+
             // Toggle current item
             if (!isOpen) {
                 item.classList.add('open');
@@ -284,7 +212,7 @@ document.querySelectorAll('.faq-item').forEach(item => {
 const createMobileMenu = () => {
     const nav = document.querySelector('.nav');
     const navMenu = document.querySelector('.nav-menu');
-    
+
     if (window.innerWidth <= 640) {
         // Create hamburger button if it doesn't exist
         let hamburger = document.querySelector('.hamburger');
@@ -298,7 +226,7 @@ const createMobileMenu = () => {
                     <path d="M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
             `;
-            
+
             // Add styles
             hamburger.style.cssText = `
                 display: block;
@@ -309,11 +237,11 @@ const createMobileMenu = () => {
                 cursor: pointer;
                 color: var(--text-primary);
             `;
-            
+
             hamburger.addEventListener('click', () => {
                 navMenu.classList.toggle('mobile-open');
             });
-            
+
             nav.appendChild(hamburger);
         }
     }
