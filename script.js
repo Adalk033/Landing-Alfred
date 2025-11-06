@@ -107,16 +107,8 @@ document.querySelectorAll('.feature-card, .requirement-card, .faq-item, .step').
 const downloadBtn = document.getElementById('downloadBtn');
 if (downloadBtn) {
     downloadBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-
         // Show notification
         showNotification('Descarga iniciando...', 'info');
-
-        // Here you would typically trigger the actual download
-        // For now, we'll just show a message
-        setTimeout(() => {
-            showNotification('Por favor, contacta al desarrollador para obtener el instalador.', 'warning');
-        }, 1000);
     });
 }
 
